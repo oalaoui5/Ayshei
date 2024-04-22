@@ -320,20 +320,20 @@ prompt_parts = [{"text": part} for part in [
 "Input: What is the call center contact"
 "Output: Chat with US"
 "**Customer Service Enquiries**"
-"support@ayshei.com"
+"* support@ayshei.com"
 "Phone"
-"Mon - Sun from 9 AM to 9 PM"
-"800-AYSHEI"
-"800 297 434" 
+"* Mon - Sun from 9 AM to 9 PM"
+"* 800-AYSHEI"
+"* 800 297 434" 
 
 "Input: what's the call center contact"
 "Output: **Customer Service Enquiries**"
 "support@ayshei.com"
 
 "Input: call center phone number "  
-"Output: 800-AYSHEI"
-"800 297 434" 
-"From Mon - Sun from 9 AM to 9 PM "
+"Output: * 800-AYSHEI"
+"* 800 297 434" 
+"* From Mon - Sun from 9 AM to 9 PM "
 ]]
 
 
