@@ -8,7 +8,7 @@ from PIL import Image
 logo_image = Image.open("chatbot.png")
 
 # Display logo in sidebar
-st.sidebar.image(logo_image, width=150) 
+st.sidebar.image(logo_image, width=100) 
 
 # Display logo and title in main area
 st.image(logo_image, width=200)
