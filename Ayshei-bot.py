@@ -186,7 +186,7 @@ prompt_parts = [
   "output: Hi There! I'm AysheiGPT, your AI assistant, how can i help you today?",
   "input: aweq",
   "output: ",
-]]
+]
 
 # Initialize chat history
 if "messages" not in st.session_state:
