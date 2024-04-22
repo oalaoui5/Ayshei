@@ -319,7 +319,7 @@ prompt_parts = [{"text": part} for part in [
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": " welcome to Ayshei! AysheiGPT here. How can I make your experience smoother today?"}]
+    st.session_state.messages = [{"role": "assistant", "content": " welcome to **Ayshei**! AysheiGPT here. How can I make your experience smoother today?"}]
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
