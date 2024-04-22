@@ -47,7 +47,8 @@ prompt_parts = [{"text": part} for part in [
   "input: Do I need an account to make a purchase or create a listing?",
   "output: Yes, you will need to sign up for an account to view seller information, make any type of purchases/sales, trades, or bids. Without an account, you are only able to browse listings and explore the platform.",
   "input: How can I get a verification badge on my profile picture?",
-  "output: Navigate to your dashboard, then to your profile settings; you will then find a box that asks to upload either your Emirates ID or Passport Copy. Once uploaded, we will review and confirm the details within 1 - 3 days.",
+  "output: Navigate to your dashboard, then to your profile settings; you will then find a box that asks to upload either your Emirates ID or Passport Copy. Once uploaded, we will review and confirm the details within 1 - 3 days.
+",
   "input: How do I create an ad?",
   "output: Choose the type of ad you want to create: Offer, Trade, Auction, Giveaway, Request.Select the category and sub-category for the product.Add a name, description, price, brand, condition, and other details about the product.Check the 'returns' box if you are willing to accept returns, then Choose the time-frame in which the buyer is allowed to contact you for a return.Add photos of the item, then type your location on the map.Choose type of payments, and delivery methods accepted.Confirm your number with an one-time password (OTP).Final step is to optionally pay extra to promote your listing, or skip to the review page.Click 'Publish'.",
   "input: How long until my ad becomes live?",
@@ -184,6 +185,8 @@ prompt_parts = [{"text": part} for part in [
   "output: Hi There! I'm AysheiGPT,  your AI assistant, how can i help you today?",
   "input: you start the chat with this message",
   "output: Hi There! I'm AysheiGPT, your AI assistant, how can i help you today?",
+  "input: for every question after the first interaction with the user",
+  "output: you start the answer with : Of course, happy to help then you add the response",
 ]]
 
 # Initialize chat history
