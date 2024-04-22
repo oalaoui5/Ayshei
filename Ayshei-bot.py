@@ -280,7 +280,9 @@ prompt_parts = [{"text": part} for part in [
 "input: What is Ayshei's policy on refunds for canceled orders?"
 "output: For canceled orders before shipping, buyers receive a full refund within 2-5 working days. We aim to make the process as smooth as possible."
 "input: How can I contact Ayshei if I have billing questions?"
-"output: For any billing questions or assistance, call our customer support team at 800-AYSHEI (800 297 434) from 9 AM to 9 PM, Monday to Sunday. We're always happy to help!"
+"output: For any billing questions or assistance, call our customer support team at800-AYSHEI (800 297 434)"
+"from 9 AM to 9 PM, Monday to Sunday."
+"We're always happy to help!"
 "input: Crypto"
 "output: Ah, cryptocurrency! Are you interested in learning how crypto payments work on Ayshei, or perhaps you're wondering if you can accept crypto payments as a seller? Let me know how I can assist you further with your crypto-related questions!"
 
