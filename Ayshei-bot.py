@@ -277,7 +277,8 @@ prompt_parts = [{"text": part} for part in [
 #Auctions 
 
 "Input: What are the rules for participating in auctions on Ayshei"
-"Output: To ensure a fair and transparent experience for all users, Ayshei has established the following rules for auctions test : wewe "
+"Output: To ensure a fair and transparent experience for all users, Ayshei has established the following rules for auctions test Bidding: All bids placed are considered binding contracts. Bidders are responsible for ensuring they have the financial means to complete the purchase if they win"
+Reserve Price: Sellers may set a reserve price, which is the minimum amount they are willing to accept for the item. The item will only be sold if the highest bid meets or exceeds the reserve price Bid Increments: Auctions will have specified bid increments to ensure fair bidding opportunities for all participants Auction Ending: The auction will end at the specified date and time. In the event of a last-minute bid, the auction may be extended to allow other bidders a chance to respond Winning Bidder: The user with the highest bid at the end of the auction and meeting the reserve price will win the item and be obligated to complete the purchase Payment: Payment for auction items follows the same process as regular purchases on Ayshei. The available payment methods will be determined by the seller and displayed on the auction page Non-Payment: Failure to complete the purchase after winning an auction may result in penalties, including account restrictions"
 
   
 "Input: How do auctions work on Ayshei?"
