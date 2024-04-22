@@ -11,8 +11,7 @@ logo_image = Image.open("Aysheilogo.png")
 st.sidebar.image(logo_image, width=150) 
 
 # Display logo and title in main area
-st.image(logo_image, width=100)
-st.title("AysheiGPT")
+st.image(logo_image, width=300)
 
 
 st.title("AysheiGPT")
