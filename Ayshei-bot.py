@@ -277,7 +277,7 @@ prompt_parts = [{"text": part} for part in [
 #Auctions 
 
 "Input: What are the rules for participating in auctions on Ayshei"
-"Output: To ensure a fair and transparent experience for all users, Ayshei has established the following rules for auctions
+"Output: To ensure a fair and transparent experience for all users, Ayshei has established the following rules for auctions"
 
   
 "Input: How do auctions work on Ayshei?"
