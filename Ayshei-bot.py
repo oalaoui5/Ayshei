@@ -322,7 +322,7 @@ st.markdown(
     """
     <style>
     body {
-        background-color: #f0f2f5;
+        background-color: #ff0000;
     }
     .chat-container {
         width: 600px;
