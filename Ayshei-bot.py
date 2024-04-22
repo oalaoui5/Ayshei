@@ -11,10 +11,10 @@ logo_image = Image.open("Aysheilogo.png")
 st.sidebar.image(logo_image, width=150) 
 
 # Display logo and title in main area
-st.image(logo_image, width=300)
+st.image(logo_image, width=200)
 
 
-st.title("AysheiGPT")
+st.title("Welcome to AysheiGPT")
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCMbI0KWhS_hUU5ld0Lc-iMkYK8Nq1XWgs"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
