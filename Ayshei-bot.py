@@ -318,35 +318,6 @@ prompt_parts = [{"text": part} for part in [
 ]]
 
 
-st.markdown(
-    """
-    <style>
-    body {
-        background-color: #ff0000;
-    }
-    .chat-container {
-        width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-    }
-    .chat-messages {
-        height: 400px;
-        overflow-y: auto;
-    }
-    .chat-input {
-        width: 100%;
-        height: 50px;
-        padding: 10px;
-        border: 1px solid #ccc;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": " welcome to **Ayshei**! AysheiGPT here. How can I make your experience smoother today?"}]
