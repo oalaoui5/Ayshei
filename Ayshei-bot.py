@@ -253,8 +253,6 @@ prompt_parts = [{"text": part} for part in [
 "output: Online payments are held securely in our escrow account until the buyer confirms item receipt, ensuring a safe and reliable transaction for both parties."
 "input: Are there any fees for using online payment methods?"
 "output: Yes, there's a small fee on sales made through credit/debit cards (2.9% + 1 AED) and cryptocurrency (2% + 1 AED), plus the applicable 5% VAT."
-"input: How does paying with cryptocurrency work?"
-"output: You get a crypto-wallet within the platform upon signing up. Use it to make payments and store your cryptocurrency securely. It's a convenient and modern payment solution."
 "input: Are there any additional fees besides the sales fee?"
 "output: There might be a shipping fee depending on the item and seller's preferences. The total cost, including any applicable fees, will always be displayed transparently before you finalize your purchase."
 "input: Do I need to pay taxes on my purchases? "
@@ -275,7 +273,25 @@ prompt_parts = [{"text": part} for part in [
 "output: For any billing questions or assistance, call our customer support team at 800-AYSHEI (800 297 434) from 9 AM to 9 PM, Monday to Sunday. We're always happy to help!"
 "input: Crypto"
 "output: Ah, cryptocurrency! Are you interested in learning how crypto payments work on Ayshei, or perhaps you're wondering if you can accept crypto payments as a seller? Let me know how I can assist you further with your crypto-related questions!"
-  
+
+#Auctions 
+Input: "How do auctions work on Ayshei?"
+Output: "Auctions on Ayshei allow buyers to bid on items, with the highest bidder winning the item at the end of the auction period. Each auction will have specific details, such as a starting bid, bid increments, and a reserve price."
+Input: "What is a reserve price?"
+Output: "A reserve price is the minimum amount that a seller is willing to accept for an item. If the highest bid at the end of the auction doesn't reach the reserve price, the seller is not obligated to sell the item."
+Input: "Can I set a maximum bid?"
+Output: "Yes, you can! When placing a bid, you have the option to set a maximum bid. This means the system will automatically bid on your behalf up to your maximum limit, even if you're not actively participating in the bidding process."
+Input: "What happens if two people place the same bid?"
+Output: "If two users place the same bid, the bid that was placed first will take priority."
+Input: "How do I know if I'm the highest bidder?"
+Output: "You can easily track the current highest bid on the auction page. Additionally, you will receive notifications if you are outbid by another user."
+Input: "What happens if I win the auction?"
+Output: "If you are the highest bidder at the end of the auction and the reserve price is met, you will win the item and be obligated to complete the purchase."
+Input: "Can I retract my bid?"
+Output: "Generally, bids are considered binding contracts and cannot be retracted. However, there may be exceptional circumstances where bid retractions are considered. We recommend carefully reviewing the auction details and bidding responsibly."
+Input: "How do I pay for an item I won in an auction?"
+Output: "Payment for auction items follows the same process as regular purchases. You can choose from various payment methods such as cash, cryptocurrency, bank transfer, or credit/debit cards, depending on the seller's preferences."
+
 ]]
 
 # Initialize chat history
