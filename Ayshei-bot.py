@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import google.generativeai as genai
-import io.StringIO
 
 st.title("AysheiGPT")
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCMbI0KWhS_hUU5ld0Lc-iMkYK8Nq1XWgs"
