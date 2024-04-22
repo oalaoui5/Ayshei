@@ -2,6 +2,18 @@ import streamlit as st
 import os
 import google.generativeai as genai
 
+
+# Load logo image
+logo_image = Image.open("Aysheilogo.png")
+
+# Display logo in sidebar
+st.sidebar.image(logo_image, width=150) 
+
+# Display logo and title in main area
+st.image(logo_image, width=100)
+st.title("AysheiGPT")
+
+
 st.title("AysheiGPT")
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCMbI0KWhS_hUU5ld0Lc-iMkYK8Nq1XWgs"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
