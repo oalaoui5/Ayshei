@@ -317,6 +317,18 @@ prompt_parts = [{"text": part} for part in [
 "Input: How do I pay for an item I won in an auction?"
 "Output: Payment for auction items follows the same process as regular purchases. You can choose from various payment methods such as cash, cryptocurrency, bank transfer, or credit/debit cards, depending on the seller's preferences."
 
+
+# Call center 
+"input: call center contact"
+"output: Chat with US"
+"Customer Service Enquiries"
+"support@ayshei.com"
+" Phone"
+"Mon - Sun from 9 AM to 9 PM"
+"800-AYSHEI"
+"800 297 434" 
+
+  
 ]]
 
 
