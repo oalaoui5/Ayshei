@@ -5,7 +5,7 @@ from PIL import Image
 
 
 # Load logo image
-logo_image = Image.open("Aysheilogo.png")
+logo_image = Image.open("chatbot.png")
 
 # Display logo in sidebar
 st.sidebar.image(logo_image, width=150) 
