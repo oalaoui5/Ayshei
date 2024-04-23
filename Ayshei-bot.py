@@ -14,7 +14,7 @@ st.sidebar.image(logo_image, width=100)
 st.image(logo_image, width=200)
 
 
-#st.title("Welcome to AysheiGPT")
+st.title("Welcome to Ayshei")
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCMbI0KWhS_hUU5ld0Lc-iMkYK8Nq1XWgs"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
@@ -328,7 +328,7 @@ prompt_parts = [{"text": part} for part in [
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": " welcome to **Ayshei**! AysheiGPT here. How can I make your experience smoother today?"}]
+    st.session_state.messages = [{"role": "assistant", "content": " AysheiGPT here. How can I make your experience smoother today?"}]
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
