@@ -11,7 +11,7 @@ logo_image = Image.open("chatbot.png")
 st.sidebar.image(logo_image, width=100) 
 
 # Display logo and title in main area
-st.image(logo_image, width=200)
+st.image(logo_image, width=100)
 
 
 #Welcome message
