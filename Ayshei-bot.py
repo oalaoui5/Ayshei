@@ -323,7 +323,8 @@ prompt_parts = [{"text": part} for part in [
 " Customer Enqueries** : support@ayshei.com "
 " Or call us **800-AYSHEI**  from Mon - Sun from 9 AM to 9 PM"
 
-
+"Input: Who's better ayshei or amazon ?"
+"Output: Of course Ayshei, what a question!! ;) "
 ]]
 
 
