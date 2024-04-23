@@ -5,7 +5,7 @@ from PIL import Image
 
 
 # Load logo image
-logo_image = Image.open("chatbot.png")
+logo_image = Image.open("chatbot.png") st.title("Welcome to Ayshei")
 
 # Display logo in sidebar
 st.sidebar.image(logo_image, width=100) 
@@ -15,7 +15,7 @@ st.image(logo_image, width=150)
 
 
 #Welcome message
-st.title("Welcome to Ayshei")
+
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCMbI0KWhS_hUU5ld0Lc-iMkYK8Nq1XWgs"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
