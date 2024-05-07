@@ -211,10 +211,11 @@ def llm_function(query):
         for keyword in search_keywords:
             search_query = search_query.replace(keyword, "").strip()
 
-        products = airtable.get('Products', filter_by_formula=f"OR(FIND(LOWER('{search_query}'), LOWER({{productname}})) != '', FIND(LOWER('{search_query}'), LOWER({{descriptiontext}})) != '')")
+        
 
         if products['records']:
-            response_text = "Here are the matching products from our database:\n\n"
+            response_text = "Here are the some matching products from on our platform. \n\n"
+            products = airtable.get('Products', filter_by_formula=f"OR(FIND(LOWER('{search_query}'), LOWER({{productname}})) != '', FIND(LOWER('{search_query}'), LOWER({{descriptiontext}})) != '')")
             valid_products = []
             for product in products['records']:
                 fields = product['fields']
