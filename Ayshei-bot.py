@@ -329,12 +329,12 @@ for message in st.session_state.messages:
 def llm_function(query):
     response_text = ""  # Initialize response_text with an empty string
 
-    search_keywords = ["search for", "find", "look for", "show me", "list", "display", "do you have available"]
+    search_keywords = ["search for", "find", "look for", "show me", "list", "display", "do you have any available"]
     if any(keyword in query.lower() for keyword in search_keywords):
         search_query = query.lower()
         for keyword in search_keywords:
             search_query = search_query.replace(keyword, "").strip()
-        response_text = "Here are the matching products from our database:\n\n"
+
         products = airtable.get('Products', filter_by_formula=f"OR(FIND(LOWER('{search_query}'), LOWER({{productname}})) != '', FIND(LOWER('{search_query}'), LOWER({{descriptiontext}})) != '')")
         
         if products['records']:
@@ -359,6 +359,7 @@ def llm_function(query):
 
             num_products = len(valid_products)
             if num_products > 0:
+                response_text = "Here are the matching products from our database:\n\n"
                 cols = st.columns(num_products)
 
                 for i, product in enumerate(valid_products):
