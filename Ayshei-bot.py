@@ -205,7 +205,7 @@ for message in st.session_state.messages:
 def llm_function(query):
     response_text = ""  # Initialize response_text with an empty string
 
-    search_keywords = ["search for", "find", "look for", "show me", "list", "display", "looking for"]
+    search_keywords = ["searching for", "search for", "find", "look for", "show me", "list", "display", "looking for"]
     if any(keyword in query.lower() for keyword in search_keywords):
         search_query = query.lower()
         for keyword in search_keywords:
