@@ -4,6 +4,8 @@ import google.generativeai as genai
 from PIL import Image
 from airtable import Airtable
 
+# Set the file watcher to poll
+os.environ['STREAMLIT_WATCHER'] = 'poll'
 
 # Load logo image
 logo_image = Image.open("chatbot.png") 
