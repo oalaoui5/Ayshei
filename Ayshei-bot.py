@@ -325,10 +325,7 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# Process and store Query and Response
-def llm_function(query):
-    response_text = ""  # Initialize response_text with an empty string
-
+def search_products(query):
     search_keywords = ["search for", "find", "look for", "show me", "list", "display", "do you have any available"]
     if any(keyword in query.lower() for keyword in search_keywords):
         search_query = query.lower()
@@ -338,7 +335,6 @@ def llm_function(query):
         products = airtable.get('Products', filter_by_formula=f"OR(FIND(LOWER('{search_query}'), LOWER({{productname}})) != '', FIND(LOWER('{search_query}'), LOWER({{descriptiontext}})) != '')")
         
         if products['records']:
-           
             valid_products = []
             for product in products['records']:
                 fields = product['fields']
@@ -357,46 +353,47 @@ def llm_function(query):
                         'price': price
                     })
 
-            num_products = len(valid_products)
-            if num_products > 0:
-                response_text = "Here are the matching products from our database:\n\n"
-                cols = st.columns(num_products)
-
-                for i, product in enumerate(valid_products):
-                    with cols[i]:
-                        st.image(product['image'], use_column_width=True)
-                        st.write(f"**{product['productname']}**")
-                        st.write(f"Price: {product['price']} AED")
-                        st.write(f"[Visit Product]({product['productlink']})")
-            else:
-                response_text = "No matching products found."
-
+            return valid_products
         else:
-            response_text = f"I'm sorry, I couldn't find any products matching '{search_query}' in our database."
+            return None
+    else:
+        return None
 
-        with st.chat_message("assistant"):
-            st.markdown(response_text)
+def display_products(products):
+    if products:
+        response_text = "Here are the matching products from our database:\n\n"
+        cols = st.columns(len(products))
+
+        for i, product in enumerate(products):
+            with cols[i]:
+                st.image(product['image'], use_column_width=True)
+                st.write(f"**{product['productname']}**")
+                st.write(f"Price: {product['price']} AED")
+                st.write(f"[Visit Product]({product['productlink']})")
+
+        return response_text
+    else:
+        return "No matching products found."
+
+def respond_to_query(query):
+    products = search_products(query)
+    if products:
+        response_text = display_products(products)
     else:
         response = model.generate_content(prompt_parts + [{"text": f"input: {query}"}])
-        print("Response Object:", response)
-        print("Response Parts:", response.parts)
+        if response.parts:
+            response_text = response.parts[0].text
+        else:
+            response_text = "I'm sorry, I don't have a response for that query."
 
-        try:
-            if response.parts:
-                response_text = response.parts[0].text
-                with st.chat_message("assistant"):
-                    st.markdown(response_text)
-            else:
-                response_text = "I'm sorry, I don't have a response for that query."
-                with st.chat_message("assistant"):
-                    st.markdown(response_text)
-        except Exception as e:
-            response_text = f"An error occurred: {e}"
-            with st.chat_message("assistant"):
-                st.markdown(response_text)
+    return response_text
 
-    st.session_state.messages.append({"role": "user", "content": query})
-    st.session_state.messages.append({"role": "assistant", "content": response_text})
+def process_query_and_response(query):
+    response_text = respond_to_query(query)
+    send_chat_message(response_text)
+    store_messages({"role": "user", "content": query})
+    store_messages({"role": "assistant", "content": response_text})
+
 
 # Accept user input
 query = st.chat_input("What's up?")
