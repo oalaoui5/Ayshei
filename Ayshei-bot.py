@@ -194,7 +194,7 @@ prompt_parts = [{"text": part} for part in [
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "Ask me Anything"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello, AysheiGPT here! how can i help you today ?"}]
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
@@ -274,7 +274,7 @@ def llm_function(query):
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 # Accept user input
-query = st.chat_input("Hello, AysheiGPT here, how can i help you today ?")
+query = st.chat_input("Ask me for customer support, look for a product, ...")
 
 # Calling the Function when Input is Provided
 if query:
