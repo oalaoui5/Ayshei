@@ -274,7 +274,7 @@ def llm_function(query):
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 # Accept user input
-query = st.chat_input("Ask me for customer support, look for a product, ...")
+query = st.chat_input("Ask me about help center, customer support, look for a product, ...")
 
 # Calling the Function when Input is Provided
 if query:
