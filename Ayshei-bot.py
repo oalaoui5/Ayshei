@@ -14,7 +14,7 @@ AIRTABLE_BASE_ID = 'appbcb9w6hAmSXqyM'
 # Pass the API key as a keyword argument
 airtable = Airtable(AIRTABLE_BASE_ID, api_key=AIRTABLE_API_KEY)
 
-st.title("Ayshei AI")
+st.title("AysheiGPT")
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCMbI0KWhS_hUU5ld0Lc-iMkYK8Nq1XWgs"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
