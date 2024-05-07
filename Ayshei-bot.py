@@ -325,55 +325,60 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
+
+# Search Function
+
 def search_products(query):
+    # List of search keywords
     search_keywords = ["search for", "find", "look for", "show me", "list", "display", "do you have any available"]
+    
+    # Check if any search keyword is present in the query
     if any(keyword in query.lower() for keyword in search_keywords):
+        # Extract search query by removing search keywords
         search_query = query.lower()
         for keyword in search_keywords:
             search_query = search_query.replace(keyword, "").strip()
 
-        products = airtable.get('Products', filter_by_formula=f"OR(FIND(LOWER('{search_query}'), LOWER({{productname}})) != '', FIND(LOWER('{search_query}'), LOWER({{descriptiontext}})) != '')")
-        
-        if products['records']:
-            valid_products = []
-            for product in products['records']:
-                fields = product['fields']
-                productname = fields.get('productname', '')
-                image = fields.get('image', '')
-                productlink = fields.get('productlink', '')
-                descriptiontext = fields.get('descriptiontext', '')
-                price = fields.get('price', '')
+        # Retrieve products matching the search query
+        products = fetch_products_from_database(search_query)
 
-                if productname and image and productlink:
-                    valid_products.append({
-                        'productname': productname,
-                        'image': image,
-                        'productlink': productlink,
-                        'descriptiontext': descriptiontext,
-                        'price': price
-                    })
-
-            return valid_products
+        # Process retrieved products
+        if products:
+            return filter_valid_products(products)
         else:
             return None
     else:
         return None
 
-def display_products(products):
-    if products:
-        response_text = "Here are the matching products from our database:\n\n"
-        cols = st.columns(len(products))
+def fetch_products_from_database(search_query):
+    # Fetch products from the database based on the search query
+    # Implementation of fetching products from database (e.g., using airtable.get())
+    # Placeholder return for demonstration
+    return {'records': []}  # Placeholder for products
 
-        for i, product in enumerate(products):
-            with cols[i]:
-                st.image(product['image'], use_column_width=True)
-                st.write(f"**{product['productname']}**")
-                st.write(f"Price: {product['price']} AED")
-                st.write(f"[Visit Product]({product['productlink']})")
+def filter_valid_products(products):
+    # Filter valid products based on certain criteria
+    valid_products = []
+    for product in products['records']:
+        fields = product['fields']
+        productname = fields.get('productname', '')
+        image = fields.get('image', '')
+        productlink = fields.get('productlink', '')
+        descriptiontext = fields.get('descriptiontext', '')
+        price = fields.get('price', '')
 
-        return response_text
-    else:
-        return "No matching products found."
+        if productname and image and productlink:
+            valid_products.append({
+                'productname': productname,
+                'image': image,
+                'productlink': productlink,
+                'descriptiontext': descriptiontext,
+                'price': price
+            })
+
+    return valid_products
+
+
 
 def respond_to_query(query):
     products = search_products(query)
@@ -387,6 +392,7 @@ def respond_to_query(query):
             response_text = "I'm sorry, I don't have a response for that query."
 
     return response_text
+
 
 def process_query_and_response(query):
     response_text = respond_to_query(query)
