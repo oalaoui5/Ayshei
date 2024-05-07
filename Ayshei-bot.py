@@ -1,28 +1,20 @@
 import streamlit as st
 import os
 import google.generativeai as genai
-from PIL import Image
 from airtable import Airtable
 
 # Set the file watcher to poll
 os.environ['STREAMLIT_WATCHER'] = 'poll'
 
-# Load logo image
-logo_image = Image.open("chatbot.png") 
-
-# Display logo in sidebar
-st.sidebar.image(logo_image, width=100) 
-
-# Display logo and title in main area
-st.image(logo_image, width=150)
-
 # Airtable credentials
 AIRTABLE_API_KEY = 'pat5JWlq8oihSdApS.77ee4e3d66e97988c89ffb0169546e695dc35650c6a87d5994047fc3cff4c3e7'
 AIRTABLE_BASE_ID = 'appbcb9w6hAmSXqyM'
 
+# Initialize Airtable with the API key
+# Pass the API key as a keyword argument
+airtable = Airtable(AIRTABLE_BASE_ID, api_key=AIRTABLE_API_KEY)
 
-#Welcome message
-st.title("Welcome to Ayshei")
+st.title("Ayshei AI")
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCMbI0KWhS_hUU5ld0Lc-iMkYK8Nq1XWgs"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
@@ -37,19 +29,19 @@ generation_config = {
 safety_settings = [
   {
     "category": "HARM_CATEGORY_HARASSMENT",
-    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    "threshold": "BLOCK_NONE"
   },
   {
     "category": "HARM_CATEGORY_HATE_SPEECH",
-    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    "threshold": "BLOCK_NONE"
   },
   {
     "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    "threshold": "BLOCK_NONE"
   },
   {
     "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    "threshold": "BLOCK_NONE"
   },
 ]
 
@@ -57,9 +49,6 @@ model = genai.GenerativeModel(model_name="gemini-1.0-pro",
                               generation_config=generation_config,
                               safety_settings=safety_settings)
 
-prompt_parts = [{"text": part} for part in [
-
-  
 #Accounts & Ads
 "input: How do I create a personal account?"
 "output: Absolutely! Creating a personal account is easy. Just head over to the Ayshei website and click the ‘Sign Up’ button. You'll need to provide your email address, create a password, and agree to the terms and conditions. Let me know if you need further assistance!"
@@ -324,20 +313,10 @@ prompt_parts = [{"text": part} for part in [
 "Output: Payment for auction items follows the same process as regular purchases. You can choose from various payment methods such as cash, cryptocurrency, bank transfer, or credit/debit cards, depending on the seller's preferences."
 
 
-# Call center 
-"Input: I want to reach out to the Customer support ?"
-"Output: Chat with US"
-" Customer Enqueries** : support@ayshei.com "
-" Or call us **800-AYSHEI**  from Mon - Sun from 9 AM to 9 PM"
-
-"Input: Who's better ayshei or amazon ?"
-"Output: Of course Ayshei, what a question!! ;) "
-]]
-
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": " AysheiGPT here. How can I make your experience smoother today?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Ask me Anything"}]
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
@@ -366,7 +345,8 @@ def llm_function(query):
                 productlink = fields.get('productlink', '')
                 descriptiontext = fields.get('descriptiontext', '')
                 price = fields.get('price', '')
-               if productname and image and productlink:
+
+                if productname and image and productlink:
                     valid_products.append({
                         'productname': productname,
                         'image': image,
@@ -397,6 +377,7 @@ def llm_function(query):
         response = model.generate_content(prompt_parts + [{"text": f"input: {query}"}])
         print("Response Object:", response)
         print("Response Parts:", response.parts)
+
         try:
             if response.parts:
                 response_text = response.parts[0].text
@@ -413,8 +394,6 @@ def llm_function(query):
 
     st.session_state.messages.append({"role": "user", "content": query})
     st.session_state.messages.append({"role": "assistant", "content": response_text})
-
-
 
 # Accept user input
 query = st.chat_input("What's up?")
