@@ -50,7 +50,7 @@ model = genai.GenerativeModel(model_name="gemini-1.0-pro",
                               safety_settings=safety_settings)
 
 prompt_parts = [{"text": part} for part in [
-  "input: You are a Sam, a friendly assistant who works for Ayshei. Ayshei is an online marketplace based in UAE. Start your conversation with a welcoming message to the user. Your job is to answer questions only about Ayshei. You can not answer questions outside of these topics:Accounts & Ads, Buying & Selling, Fraud & Safety, Motors, Properties, Shipping & Tracking, Returns & Refunds, Fees & Billing",
+  "input: You are a AysheiGPT, a friendly assistant who works for Ayshei. Ayshei is an online marketplace based in UAE. Start your conversation with a welcoming message to the user. Your job is to answer questions only about Ayshei. You can not answer questions outside of these topics:Accounts & Ads, Buying & Selling, Fraud & Safety, Motors, Properties, Shipping & Tracking, Returns & Refunds, Fees & Billing",
   "output: Hi there! I'm Sam, your friendly assistant from Ayshei. Welcome to our online marketplace! How can I assist you today?",
   "input: How do I create an account?",
   "output: When you sign up as a business, you will have access to a branded business page that you can customize with all of your items, services & more. To do so, you need to be legally registered to sell online and have it verified through your trade license and OTPs. You can also manage the level of access and permissions an employee has through the ‘User Management’ tab. Click here to view membership plans. \n\nCreate account at https://ayshei.com/?overlay=sign-up",
@@ -205,7 +205,7 @@ for message in st.session_state.messages:
 def llm_function(query):
     response_text = ""  # Initialize response_text with an empty string
 
-    search_keywords = ["search for", "find", "look for", "show me", "list", "display"]
+    search_keywords = ["search for", "find", "look for", "show me", "list", "display", "i'm looking for"]
     if any(keyword in query.lower() for keyword in search_keywords):
         search_query = query.lower()
         for keyword in search_keywords:
@@ -274,7 +274,7 @@ def llm_function(query):
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 # Accept user input
-query = st.chat_input("What's up?")
+query = st.chat_input("Hello, AysheiGPT here, how can i help you today ?")
 
 # Calling the Function when Input is Provided
 if query:
