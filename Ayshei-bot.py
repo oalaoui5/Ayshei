@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import google.generativeai as genai
 from PIL import Image
+from airtable import Airtable
 
 
 # Load logo image
@@ -12,6 +13,10 @@ st.sidebar.image(logo_image, width=100)
 
 # Display logo and title in main area
 st.image(logo_image, width=150)
+
+# Airtable credentials
+AIRTABLE_API_KEY = 'pat5JWlq8oihSdApS.77ee4e3d66e97988c89ffb0169546e695dc35650c6a87d5994047fc3cff4c3e7'
+AIRTABLE_BASE_ID = 'appbcb9w6hAmSXqyM'
 
 
 #Welcome message
@@ -339,11 +344,75 @@ for message in st.session_state.messages:
 
 # Process and store Query and Response
 def llm_function(query):
-    response = model.generate_content(prompt_parts + [{"text": f"input: {query}"}])
-    with st.chat_message("assistant"):
-        st.markdown(response.text)
+    response_text = ""  # Initialize response_text with an empty string
+
+    search_keywords = ["search for", "find", "look for", "show me", "list", "display"]
+    if any(keyword in query.lower() for keyword in search_keywords):
+        search_query = query.lower()
+        for keyword in search_keywords:
+            search_query = search_query.replace(keyword, "").strip()
+
+        products = airtable.get('Products', filter_by_formula=f"OR(FIND(LOWER('{search_query}'), LOWER({{productname}})) != '', FIND(LOWER('{search_query}'), LOWER({{descriptiontext}})) != '')")
+
+        if products['records']:
+            response_text = "Here are the matching products from our database:\n\n"
+            valid_products = []
+            for product in products['records']:
+                fields = product['fields']
+                productname = fields.get('productname', '')
+                image = fields.get('image', '')
+                productlink = fields.get('productlink', '')
+                descriptiontext = fields.get('descriptiontext', '')
+                price = fields.get('price', '')
+               if productname and image and productlink:
+                    valid_products.append({
+                        'productname': productname,
+                        'image': image,
+                        'productlink': productlink,
+                        'descriptiontext': descriptiontext,
+                        'price': price
+                    })
+
+            num_products = len(valid_products)
+            if num_products > 0:
+                cols = st.columns(num_products)
+
+                for i, product in enumerate(valid_products):
+                    with cols[i]:
+                        st.image(product['image'], use_column_width=True)
+                        st.write(f"**{product['productname']}**")
+                        st.write(f"Price: {product['price']} AED")
+                        st.write(f"[Visit Product]({product['productlink']})")
+            else:
+                response_text = "No matching products found."
+
+        else:
+            response_text = f"I'm sorry, I couldn't find any products matching '{search_query}' in our database."
+
+        with st.chat_message("assistant"):
+            st.markdown(response_text)
+    else:
+        response = model.generate_content(prompt_parts + [{"text": f"input: {query}"}])
+        print("Response Object:", response)
+        print("Response Parts:", response.parts)
+        try:
+            if response.parts:
+                response_text = response.parts[0].text
+                with st.chat_message("assistant"):
+                    st.markdown(response_text)
+            else:
+                response_text = "I'm sorry, I don't have a response for that query."
+                with st.chat_message("assistant"):
+                    st.markdown(response_text)
+        except Exception as e:
+            response_text = f"An error occurred: {e}"
+            with st.chat_message("assistant"):
+                st.markdown(response_text)
+
     st.session_state.messages.append({"role": "user", "content": query})
-    st.session_state.messages.append({"role": "assistant", "content": response.text})
+    st.session_state.messages.append({"role": "assistant", "content": response_text})
+
+
 
 # Accept user input
 query = st.chat_input("What's up?")
