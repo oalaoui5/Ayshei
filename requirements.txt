@@ -1,4 +1,4 @@
 google.generativeai
 airtable
-speech_recognition
 gtts
+speech_recognition
