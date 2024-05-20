@@ -1,8 +1,10 @@
 # Core Chatbot Functionalities
 google.generativeai  # Text generation or AI tasks with Google models
 airtable            # Integration with Airtable for data access
-# speech_recognition  # Speech-to-text conversion for understanding spoken queries
-# gtts                # Text-to-speech functionality for audio responses
+# Speech-to-text conversion for understanding spoken queries
+# speech_recognition 
+# Text-to-speech functionality for audio responses
+# gtts                
 
 # Optional Additions (Choose based on your needs)
 
