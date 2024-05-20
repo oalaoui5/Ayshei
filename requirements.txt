@@ -1,2 +1,2 @@
-google.generativeai  # Text generation or AI tasks with Google models
-airtable            # Integration with Airtable for data access
+google.generativeai
+airtable
